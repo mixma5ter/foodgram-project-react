@@ -133,3 +133,6 @@ dmypy.json
 
 # макеты страниц
 layouts/
+
+static/
+media/
