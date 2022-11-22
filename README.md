@@ -15,7 +15,7 @@ Cайт Foodgram («Продуктовый помощник») создан дл
 * Python 3.7
 * Django 2.2
 * Rest API
-* SQLite3
+* Postgresql
 
 Установка проекта из репозитория
 ----------
