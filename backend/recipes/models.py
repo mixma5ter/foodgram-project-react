@@ -1,7 +1,6 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 
-User = get_user_model()
+from users.models import CustomUser
 
 
 class Tag(models.Model):
@@ -69,7 +68,7 @@ class AmountIngredient(models.Model):
 
 class Recipe(models.Model):
     author = models.ForeignKey(
-        User,
+        CustomUser,
         verbose_name='Автор рецепта',
         on_delete=models.CASCADE,
         related_name='recipes'
@@ -116,7 +115,7 @@ class Recipe(models.Model):
 
 class FavoriteRecipe(models.Model):
     user = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='favorite_recipes',
         verbose_name='Повар'
@@ -139,7 +138,7 @@ class FavoriteRecipe(models.Model):
 
 class ShoppingList(models.Model):
     user = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='shopping_list_recipes',
         verbose_name='Покупатель'

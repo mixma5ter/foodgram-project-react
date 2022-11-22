@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Follow, User
+from .models import Follow, CustomUser
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -25,5 +25,5 @@ class FollowAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(CustomUser, UserAdmin)
 admin.site.register(Follow, FollowAdmin)

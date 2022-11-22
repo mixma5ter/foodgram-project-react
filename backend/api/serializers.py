@@ -1,14 +1,14 @@
 from rest_framework import serializers
 
 from recipes.models import AmountIngredient, Ingredient, Recipe, Tag
-from users.models import User
+from users.models import CustomUser
 
 
 class UserSerializer(serializers.ModelSerializer):
     is_subscribed = serializers.SerializerMethodField()
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = (
             'email', 'id', 'username', 'first_name',
             'last_name', 'is_subscribed'
@@ -28,7 +28,7 @@ class UserSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        return User.objects.create_user(
+        return CustomUser.objects.create_user(
             **validated_data, password=self.initial_data['password']
         )
 
@@ -38,7 +38,7 @@ class FollowSerializer(UserSerializer):
     recipes_count = serializers.SerializerMethodField()
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = (
             'email', 'id', 'username', 'first_name',
             'last_name', 'is_subscribed', 'recipes', 'recipes_count'

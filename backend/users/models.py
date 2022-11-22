@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -26,18 +25,15 @@ class CustomUser(AbstractUser):
         return self.username
 
 
-User = get_user_model()
-
-
 class Follow(models.Model):
     user = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='follower',
         verbose_name='Подписчик'
     )
     author = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='following',
         verbose_name='Автор'

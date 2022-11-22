@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from recipes.models import (AmountIngredient, FavoriteRecipe, Ingredient,
                             Recipe, ShoppingList, Tag)
-from users.models import Follow, User
+from users.models import Follow, CustomUser
 
 from .permissions import RecipePermission, UserPermission
 from .serializers import (FollowSerializer, FullRecipeSerializer,
@@ -23,7 +23,7 @@ class UserViewSet(
     mixins.ListModelMixin,
     viewsets.GenericViewSet
 ):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     pagination_class = PageLimitPaginator
     permission_classes = (UserPermission,)
@@ -83,7 +83,7 @@ class FollowViewSet(viewsets.ViewSet):
     permission_classes = (permissions.IsAuthenticated,)
 
     def create(self, request, user_id):
-        follow_author = get_object_or_404(User, pk=user_id)
+        follow_author = get_object_or_404(CustomUser, pk=user_id)
         if follow_author != request.user and (
             not request.user.follower.filter(author=follow_author).exists()
         ):
@@ -98,7 +98,7 @@ class FollowViewSet(viewsets.ViewSet):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, user_id):
-        follow_author = get_object_or_404(User, pk=user_id)
+        follow_author = get_object_or_404(CustomUser, pk=user_id)
         data_follow = request.user.follower.filter(author=follow_author)
         if data_follow.exists():
             data_follow.delete()
