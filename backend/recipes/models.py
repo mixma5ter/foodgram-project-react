@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxLengthValidator, RegexValidator
 
 from users.models import CustomUser
 
@@ -12,7 +13,11 @@ class Tag(models.Model):
     color = models.CharField(
         verbose_name='Цветовой HEX-код тега',
         max_length=100,
-        unique=True
+        unique=True,
+        validators=[RegexValidator(
+            regex='^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$',
+            message='Введите валидный HEX-код'
+        )]
     )
     slug = models.SlugField(
         unique=True,
@@ -60,7 +65,6 @@ class AmountIngredient(models.Model):
         verbose_name = "Ингредиент в рецептах с количеством"
         verbose_name_plural = "Ингредиенты в рецептах с количеством"
         ordering = ['ingredient']
-        unique_together = ('ingredient', 'amount')
 
     def __str__(self):
         return self.ingredient.name
@@ -84,7 +88,8 @@ class Recipe(models.Model):
     )
     text = models.TextField(
         verbose_name='Текст рецепта',
-        help_text='Текстовое описание рецепта'
+        help_text='Текстовое описание рецепта',
+        validators=[MaxLengthValidator(2000)]
     )
     ingredients = models.ManyToManyField(
         AmountIngredient,
