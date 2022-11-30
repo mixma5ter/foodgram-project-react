@@ -3,6 +3,10 @@ FoodGram
 
 ![Build Status](https://github.com/mixma5ter/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
+Проект развёрнут по адресу: [http://158.160.34.29](http://158.160.34.29/)
+
+Логин и пароль администратора: `admin`
+
 Описание проекта
 ----------
 Cайт Foodgram («Продуктовый помощник») создан для начинающих кулинаров и изысканных гурманов.
