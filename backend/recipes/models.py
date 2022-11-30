@@ -1,5 +1,7 @@
 from django.db import models
-from django.core.validators import MaxLengthValidator, RegexValidator
+from django.core.validators import (MaxLengthValidator,
+                                    MinValueValidator,
+                                    RegexValidator)
 
 from users.models import CustomUser
 
@@ -59,6 +61,7 @@ class AmountIngredient(models.Model):
     )
     amount = models.IntegerField(
         verbose_name='Количество ингредиента',
+        validators=[MinValueValidator(1)]
     )
 
     class Meta:
@@ -109,6 +112,7 @@ class Recipe(models.Model):
     )
     cooking_time = models.IntegerField(
         verbose_name='Время приготовления рецепта',
+        validators=[MinValueValidator(1)]
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата создания',
