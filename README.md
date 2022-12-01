@@ -3,10 +3,6 @@ FoodGram
 
 ![Build Status](https://github.com/mixma5ter/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
-Проект развёрнут по адресу: [http://158.160.34.29](http://158.160.34.29/)
-
-Логин и пароль администратора: `admin`
-
 Описание проекта
 ----------
 Cайт Foodgram («Продуктовый помощник») создан для начинающих кулинаров и изысканных гурманов.
@@ -14,6 +10,7 @@ Cайт Foodgram («Продуктовый помощник») создан дл
 Системные требования
 ----------
 * Python 3.7+
+* Docker
 * Works on Linux, Windows, macOS
 
 Стек технологий
@@ -22,6 +19,11 @@ Cайт Foodgram («Продуктовый помощник») создан дл
 * Django 2.2
 * Rest API
 * Postgresql
+* Nginx
+* gunicorn
+* Docker
+* DockerHub
+* GitHub Actions (CI/CD)
 
 Установка проекта из репозитория
 ----------
